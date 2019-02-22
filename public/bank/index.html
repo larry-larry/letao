@@ -5,14 +5,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-
+    <title>乐淘</title>
+    <!-- 引入bootstrap css包 -->
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.css">
+    <!-- 引入bootstrap-validator  css插件 -->
+    <link rel="stylesheet" href="./lib/bootstrap-validator/css/bootstrapValidator.min.css">
+    <!-- 引入nprogress css包 -->
+    <link rel="stylesheet" href="./lib/nprogress/nprogress.css">
+    <!-- 引入自己的开发的css包 -->
+    <link rel="stylesheet" href="./css/common.css">
 </head>
 
 <body>
 
-    <h1>larry</h1>
+    <!-- 侧边栏 -->
+    <div class="lt_aside">
+        <!-- 标题 -->
+        <div class="brand">
+            <a href="index.html">乐淘</a>
+        </div>
+        <!-- 用户 -->
+        <div class="user">
+            <img src="./images/47763984.jpg" alt="">
+            <p>超级管理员</p>
+        </div>
+        <!-- 导航 -->
+        <div class="nav">
+            <ul>
+                <li><a href="user.html"><i class="glyphicon glyphicon-user"></i><span>用户管理</span></a></li>
+                <li>
+                    <a class="category" href="javascript:;"><i class="glyphicon glyphicon-list"></i><span>分类管理</span></a>
+                    <div class="child">
+                        <a href="first.html">一级分类</a>
+                        <a href="second.html">二级分类</a>
+                    </div>
+                </li>
+                <li><a href="product.html"><i class="glyphicon glyphicon-tags"></i><span>商品管理</span></a></li>
+            </ul>
+        </div>
+    </div>
 
+    <!-- 主体部分 -->
+    <div class="lt_main">
+        <div class="lt_topbar">
+            <a href="#" class="pull-left">
+                <i class="icon_menu glyphicon glyphicon-align-justify"></i>
+            </a>
+            <a href="#" class="pull-right">
+                <i class="icon_logout glyphicon glyphicon-log-out"></i>
+            </a>
+        </div>
+
+        <!--  container , container-fluid 宽度100%-->
+        <div class="container-fluid">
+            <!-- 这里使用bootstrap里面组件里面的路径导航 -->
+            <ol class="breadcrumb mt_20">
+                <li><a href="index.html">管理系统</a></li>
+                <li class="active">首页</li>
+            </ol>
+        </div>
+    </div>
+
+
+    <!-- 引入jquery包 -->
+    <script src="./lib/jquery/\/jquery.js"></script>
+    <!-- 引入bootstrap js包 -->
+    <script src="./lib/bootstrap/js/bootstrap.js"></script>
+    <!-- 引入bootstrap-validator  js插件  要注意顺序,放在bootstrap下面,依赖bootstrap-->
+    <script src="./lib/bootstrap-validator/js/bootstrapValidator.min.js"></script>
+    <!-- 自己开发的js包 -->
+    <script src="./js/login.js"></script>
+    <!-- 引入nprogress js包 -->
+    <script src="./lib/nprogress/nprogress.js"></script>
+    <!-- 引入common.js实现进度条功能 -->
+    <script src="./js/common.js"></script>
 </body>
 
 </html>

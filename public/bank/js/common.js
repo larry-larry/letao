@@ -32,3 +32,28 @@ $(document).ajaxStop(function () {
         NProgress.done();
     }, 600);
 });
+
+
+
+// 公用的功能:
+// 1. 左侧二级菜单的切换
+// 2. 左侧整体菜单的切换
+// 3. 公共的退出功能 
+
+// 等待 dom 结构加载完成后, 才会执行
+$(function () {
+    // 1. 左侧二级菜单的切换
+    // 点击category让它的兄弟元素切换显示
+    $('.lt_aside .category').click(function () {
+        $(this).siblings().stop().slideToggle();
+    })
+
+    // 2. 左侧整体菜单的切换
+    $('.lt_topbar .icon_menu').click(function () {
+        // 让左侧整个菜单切换显示, 改左侧菜单的 left 值
+        // 点击的时候给整个侧边栏加类,这个类我们再css设置样式,设成0
+        $('.lt_aside').toggleClass('hidemenu');
+        $('.lt_main').toggleClass('hidemenu');
+        $('.lt_topbar').toggleClass('hidemenu');
+    })
+});
