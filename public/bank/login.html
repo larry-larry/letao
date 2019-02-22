@@ -54,6 +54,8 @@
                             <div class="col-sm-offset-3 col-sm-6">
                                 <!-- reset是重置的意思 -->
                                 <button type="reset" class="btn btn-default pull-left">重置</button>
+                                <!-- 按钮必须是submit，因为按钮需要校验，但是submit按钮放在form表单里面默认
+                                     会提交跳转的，要在js处理，其它按钮无法校验， -->
                                 <button type="submit" class="btn btn-primary pull-right">登录</button>
                             </div>
                         </div>
