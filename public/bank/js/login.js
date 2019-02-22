@@ -105,6 +105,7 @@ $(function () {
     // resetForm(false); 只重置状态
     // resetForm(true); 重置内容和状态
     $('[type="reset"]').click(function () {
+        // 重置状态即可
         $('#form').data('bootstrapValidator').resetForm();
     })
 })
