@@ -16,6 +16,10 @@ ul {
     padding: 0;
     margin: 0;
 }
+/* 模态框p的颜色 */
+.red {
+    color: #A94442;
+}
 /* 定义一个登录页的背景色 */
 .body_bg {
     background-color: #222D32;

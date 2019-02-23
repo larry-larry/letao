@@ -46,14 +46,38 @@ $(function () {
     // 点击category让它的兄弟元素切换显示
     $('.lt_aside .category').click(function () {
         $(this).siblings().stop().slideToggle();
-    })
+    });
 
     // 2. 左侧整体菜单的切换
     $('.lt_topbar .icon_menu').click(function () {
         // 让左侧整个菜单切换显示, 改左侧菜单的 left 值
-        // 点击的时候给整个侧边栏加类,这个类我们再css设置样式,设成0
+        // 点击的时候给整个侧边栏加类,切换类就可以,这个类我们再css设置样式,设成0
         $('.lt_aside').toggleClass('hidemenu');
         $('.lt_main').toggleClass('hidemenu');
         $('.lt_topbar').toggleClass('hidemenu');
+    });
+
+    // 3. 退出功能
+    //    点击菜单的退出按钮, 显示一个模态框, 询问用户
+    $('.lt_topbar .icon_logout').click(function () {
+        // 让模态框显示, modal('show'),这是官方api,里面有各种现实模式
+        $('#logoutModal').modal('show');
+    });
+
+    //   点击模态框的退出按钮, 表示确认退出
+    //   发送 ajax 请求, 让服务器端销毁用户的登陆状态
+    $('#logoutBtn').click(function () {
+        $.ajax({
+            type: 'get',
+            url: '/employee/employeeLogout',
+            dataType: 'json',
+            success: function (info) {
+                // console.log(info);
+                if (info.success) {
+                    // 退出成功, 跳转至登录页
+                    location.href = 'login.html'
+                }
+            }
+        })
     })
 });
