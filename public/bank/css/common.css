@@ -161,3 +161,11 @@ ul {
 .lt_main .breadcrumb a {
     color: #337AB7;
 }
+
+/* 数据可视化的容器样式 */
+.lt_main .echarts_left, 
+.lt_main .echarts_right {
+    width: 48%;
+    height: 400px;
+    /* background-color: skyblue; */
+} 

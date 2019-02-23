@@ -63,6 +63,12 @@
                 <li><a href="index.html">管理系统</a></li>
                 <li class="active">首页</li>
             </ol>
+
+            <!-- 准备两个容器 -->
+            <div class="lt_content">
+                <div class="echarts_left pull-left"></div>
+                <div class="echarts_right pull-right"></div>
+            </div>
         </div>
     </div>
 
@@ -99,14 +105,17 @@
     <script src="./lib/bootstrap/js/bootstrap.js"></script>
     <!-- 引入bootstrap-validator  js插件  要注意顺序,放在bootstrap下面,依赖bootstrap-->
     <script src="./lib/bootstrap-validator/js/bootstrapValidator.min.js"></script>
-    <!-- 自己开发的js包 -->
-    <script src="./js/login.js"></script>
     <!-- 引入nprogress js包 -->
     <script src="./lib/nprogress/nprogress.js"></script>
+    <!-- 引入echarts包实现数据可视化的功能 -->
+    <script src="./lib/echarts/echarts.min.js"></script>
     <!-- 引入common.js实现进度条功能 -->
     <script src="./js/common.js"></script>
     <!-- 登录拦截逻辑的js包 -->
     <script src="./js/isLogin.js"></script>
+    <!-- 写数据可视化逻辑的自己js包 -->
+    <script src="./js/index.js"></script>
+
 </body>
 
 </html>
