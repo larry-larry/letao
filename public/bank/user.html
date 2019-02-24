@@ -61,8 +61,51 @@
             <!-- 这里使用bootstrap里面组件里面的路径导航 -->
             <ol class="breadcrumb mt_20">
                 <li><a href="index.html">管理系统</a></li>
-                <li class="active">首页</li>
+                <li class="active">用户管理</li>
             </ol>
+
+            <!-- 底下的表格部分 -->
+            <div class="lt_content">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>用户名</th>
+                            <th>手机号</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 挖坑 -->
+                    </tbody>
+                </table>
+
+                <!-- 准备分页容器  为了右浮,直接给ul加类无法生效,所以需要加个父元素,把右浮设置给父元素 -->
+                <div class="pull-right">
+                    <ul id="paginator"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 准备一个userModal模态框 -->
+    <div class="modal fade" tabindex="-1" id="userModal">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                    <h4 class="modal-title">温馨提示</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="red"><i class="glyphicon glyphicon-info-sign"></i>你确定要执行此操作吗？</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="confirmBtn">确定</button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -92,21 +135,59 @@
         </div>
     </div>
 
+    <!-- 
+     模板引擎使用步骤: 
+        1. 引包
+        2. 创建模板
+        3. 准备数据
+        4. 完成渲染
+    -->
+    <script type="text/html" id="tpl">
+        {{each rows v i}}
+             <tr>
+                <!-- i就是一个单纯的序号,i+1表示当前页第几条,用当前的为第几页减去1页,就可以求得前面有多少页
+                     i+1表示当前页第几条 + 前面页有多少条 (page-1)*size ,假如当前是第二页,2-1为1,size是当前
+                     条数,1乘以5为5,那么i+1+5为6,一次类推 -->
+                <td>{{ i + 1 + (page-1)*size }}</td>
+                <td>{{ v.username }}</td>
+                <td>{{v.mobile}}</td>
+                <!-- 1 一般都是正面的状态 0 负面的状态
+                     1 表示正常启用,  0 表示该用户已禁用
+                     isDelete: 1/0
+                -->
+                <td>{{v.isDelete === 1 ? '正常' : '禁用' }}</td>
+                <!-- 如果是 1 正常, 显示禁用按钮 -->
+                <!-- 添加一个自定义属性存储id,方便执行禁用和启用功能 -->
+                <td data-id = "{{v.id}}">
+                    {{if v.isDelete === 1}}
+                        <button class="btn btn-danger">禁用</button>
+                    {{else}}
+                        <button class="btn btn-success">启用</button>
+                    {{/if}}
+                </td>
+            </tr>
+        {{/each}}
+    </script>
+
 
     <!-- 引入jquery包 -->
     <script src="./lib/jquery/\/jquery.js"></script>
     <!-- 引入bootstrap js包 -->
     <script src="./lib/bootstrap/js/bootstrap.js"></script>
-    <!-- 引入bootstrap-validator  js插件  要注意顺序,放在bootstrap下面,依赖bootstrap-->
+    <!-- 引入bootstrap-validator  js插件  要注意顺序,放在bootstrap下面,依赖bootstrap 表单校验-->
     <script src="./lib/bootstrap-validator/js/bootstrapValidator.min.js"></script>
-    <!-- 自己开发的js包 -->
-    <script src="./js/login.js"></script>
-    <!-- 引入nprogress js包 -->
+    <!-- 引入nprogress js包 进度条插件包 -->
     <script src="./lib/nprogress/nprogress.js"></script>
+    <!-- 模板引擎插件包 -->
+    <script src="./lib/artTemplate/template-web.js"></script>
+    <!-- 分页插件包 -->
+    <script src="./lib/bootstrap-paginator/bootstrap-paginator.js"></script>
     <!-- 引入common.js实现进度条功能 -->
     <script src="./js/common.js"></script>
     <!-- 登录拦截逻辑的js包 -->
     <script src="./js/isLogin.js"></script>
+    <!-- 渲染数据的js包 -->
+    <script src="./js/user.js"></script>
 </body>
 
 </html>
