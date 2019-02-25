@@ -61,8 +61,84 @@
             <!-- 这里使用bootstrap里面组件里面的路径导航 -->
             <ol class="breadcrumb mt_20">
                 <li><a href="index.html">管理系统</a></li>
-                <li class="active">首页</li>
+                <li class="active">分类管理</li>
+                <li class="active">二级分类</li>
             </ol>
+
+            <div class="lt_conteng">
+                <button class="btn btn-default" id="addBtn">添加分类</button>
+
+                <table class="table table-bordered table-hover mt_20">
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>一级分类名称</th>
+                            <th>二级分类名称</th>
+                            <th>二级分类LOGO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 挖坑 -->
+                    </tbody>
+                </table>
+                <!-- 分页容器 -->
+                <div class="pull-right">
+                    <ul id="paginator"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 添加模态框 -->
+    <div class="modal fade" tabindex="-1" id="addModal">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <form id="form">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                        <h4 class="modal-title">添加分类</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <div class="dropdown">
+                                <!-- 按钮 -->
+                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                                    <span id="dropdownText">请选择一级分类</span>
+                                    <!-- 后面的小箭头 -->
+                                    <span class="caret"></span>
+                                </button>
+                                <!-- 切换的下拉菜单 -->
+                                <ul class="dropdown-menu">
+                                    <!-- 挖坑 -->
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" name="brandName" class="form-control" placeholder="请输入二级分类">
+                        </div>
+
+                        <div class="form-group">
+                            <!-- label的作用就是跟某个表单元素绑定起来的,当点击label就出发了底下的input -->
+                            <label class="btn btn-default" for="fileupload">选择图片</label>
+                            <!-- button是没法选择图片的,只能用input,而且类型必须是file的,但是我们又需要原有的button
+                                样式,所以隐藏一个按钮在底下 -->
+                            <input type="file" id="fileupload" style="display: none;">
+                        </div>
+
+                        <div class="form-group">
+                            <img style=height:100px src="./images/none.png" alt="">
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary">添加</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -92,6 +168,25 @@
         </div>
     </div>
 
+    <script type="text/html" id="secondTpl">
+        {{each rows v i}}
+             <tr>
+                <td>{{i + 1 + (page-1)*size}}</td>
+                <td>{{v.categoryName}}</td>
+                <td>{{v.brandName}}</td>
+                <td>
+                    <img style="height:50px" src="{{v.brandLogo}}" alt="">
+                </td>
+             </tr>
+        {{/each}}
+    </script>
+
+    <script type="text/html" id="dropdownTpl">
+        {{each rows v i}}
+            <li><a href="#">{{v.categoryName}}</a></li>
+        {{/each}}
+    </script>
+
 
     <!-- 引入jquery包 -->
     <script src="./lib/jquery/\/jquery.js"></script>
@@ -99,14 +194,18 @@
     <script src="./lib/bootstrap/js/bootstrap.js"></script>
     <!-- 引入bootstrap-validator  js插件  要注意顺序,放在bootstrap下面,依赖bootstrap-->
     <script src="./lib/bootstrap-validator/js/bootstrapValidator.min.js"></script>
-    <!-- 自己开发的js包 -->
-    <script src="./js/login.js"></script>
+    <!-- 模板引擎插件包 -->
+    <script src="./lib/artTemplate/template-web.js"></script>
+    <!-- 分页插件包 -->
+    <script src="./lib/bootstrap-paginator/bootstrap-paginator.js"></script>
     <!-- 引入nprogress js包 -->
     <script src="./lib/nprogress/nprogress.js"></script>
     <!-- 引入common.js实现进度条功能 -->
     <script src="./js/common.js"></script>
     <!-- 登录拦截逻辑的js包 -->
     <script src="./js/isLogin.js"></script>
+    <!-- 渲染数据的js包 -->
+    <script src="./js/second.js"></script>
 </body>
 
 </html>
