@@ -3,7 +3,7 @@ $(function () {
     // template(模板id, 数据对象)  返回一个 htmlStr
     // 全局声明一下当前页,每条页数,方便各个函数都可以拿到
     var currentPage = 1;  //当前页
-    var pageSize = 5      //每条页数
+    var pageSize = 5      //每页条数
     var currentId;  // 标记当前正在编辑的用户 id
     var isDelete;  // 标记修改用户成什么状态
     render();

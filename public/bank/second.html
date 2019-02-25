@@ -114,6 +114,8 @@
                                     <!-- 挖坑 -->
                                 </ul>
                             </div>
+                            <!-- 准备一个隐藏域, 专门用于提交数据 -->
+                            <input type="hidden" name="categoryId">
                         </div>
 
                         <div class="form-group">
@@ -125,11 +127,20 @@
                             <label class="btn btn-default" for="fileupload">选择图片</label>
                             <!-- button是没法选择图片的,只能用input,而且类型必须是file的,但是我们又需要原有的button
                                 样式,所以隐藏一个按钮在底下 -->
-                            <input type="file" id="fileupload" style="display: none;">
+
+                            <!-- 配置必要的属性, input, type类型 file
+                                1. name 后台用于接收图片文件的
+                                2. data-url 配置插件将来上传文件时, 请求的后台接口地址
+                                3. post 只要是文件上传, 必然是 post 请求, 默认就是 post
+                             -->
+                            <input data-url="/category/addSecondCategoryPic" name="pic1" type="file" id="fileupload"
+                                style="display: none;">
                         </div>
 
-                        <div class="form-group">
-                            <img style=height:100px src="./images/none.png" alt="">
+                        <div class="form-group" id="imgBox">
+                            <img style="height:100px;" src="./images/none.png" alt="">
+                            <!-- 隐藏域,用于帮助上面的img提交数据 -->
+                            <input type="hidden" name="brandLogo">
                         </div>
                     </div>
 
@@ -183,13 +194,18 @@
 
     <script type="text/html" id="dropdownTpl">
         {{each rows v i}}
-            <li><a href="#">{{v.categoryName}}</a></li>
+            <!-- data id是为了把id设置给隐藏域的 -->
+            <li><a data-id="{{v.id}}" href="#">{{v.categoryName}}</a></li>
         {{/each}}
     </script>
 
 
     <!-- 引入jquery包 -->
     <script src="./lib/jquery/\/jquery.js"></script>
+    <!-- fileupload文件上传插件包 -->
+    <script src="./lib/jquery-fileupload/jquery.ui.widget.js"></script>
+    <script src="./lib/jquery-fileupload/jquery.fileupload.js"></script>
+
     <!-- 引入bootstrap js包 -->
     <script src="./lib/bootstrap/js/bootstrap.js"></script>
     <!-- 引入bootstrap-validator  js插件  要注意顺序,放在bootstrap下面,依赖bootstrap-->
