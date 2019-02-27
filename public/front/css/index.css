@@ -1,0 +1,50 @@
+.lt_nav {
+    padding: 10px;
+}
+
+.lt_nav li {
+    float: left;
+    width: 33.3%;
+}
+
+.lt_nav li a {
+    display: block;
+}
+
+.lt_product {
+    padding: 10px;
+}
+
+.lt_product li {
+    float: left;
+    width: 48%;
+    margin-bottom: 20px;
+}
+
+.lt_product li:nth-child(2n+1) {
+    margin-right: 4%;
+}
+
+.lt_product li a {
+    display: block;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.lt_product li a img {
+    width: 130px;
+    height: 130px;
+    display: block;
+    margin: 0 auto;
+}
+
+.lt_product li .oldPrice {
+    text-decoration: line-through;
+}
+
+.lt_product li .price {
+    color: #FF5D5D;
+}
+
