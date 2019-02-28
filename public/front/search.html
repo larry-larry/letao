@@ -81,20 +81,27 @@
 
 
     <script type="text/html" id="searchTpl">
-        <div class="title">
-            <span class="mui-pull-left">搜索历史</span>
-            <span class="btn_empty mui-pull-right"><i class="fa fa-trash"></i>清空记录</span>
-        </div>
-        <div class="content">
-            <ul>
-                {{each arr v i}}
-                    <li>
-                        <a class="mui-pull-left" href="#">{{v}}</a>
-                        <i class="btn_delete mui-pull-right mui-icon mui-icon-closeempty"></i>
-                    </li>
-                {{/each}}
-            </ul>
-        </div>
+        <!-- 这里这么写,js哪里如果不做处理会报错,因为如果获取的是本地存储没有的值,返回的是null,
+             那么null是没有length的,所以报错了 -->
+        {{if arr.length===0}}
+            <p>没有更多历史记录了</p>
+        {{else}}
+            <div class="title">
+                <span class="mui-pull-left">搜索历史</span>
+                <span class="btn_empty mui-pull-right"><i class="fa fa-trash"></i>清空记录</span>
+            </div>
+            <div class="content">
+                <ul>
+                    {{each arr v i}}
+                        <li>
+                            <a class="mui-pull-left" href="#">{{v}}</a>
+                            <!-- 存一下自定义属性下标在这里,方便点击的时候获取到你所点击的那一项 -->
+                            <i data-index="{{i}}" class="btn_delete mui-pull-right mui-icon mui-icon-closeempty"></i>
+                        </li>
+                    {{/each}}
+                </ul>
+            </div>
+        {{/if}}
     </script>
 
 
