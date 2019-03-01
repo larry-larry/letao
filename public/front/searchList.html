@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="./lib/fa/css/font-awesome.min.css">
     <!-- 自己的css包 -->
     <link rel="stylesheet" href="./css/common.css">
-    <link rel="stylesheet" href="./css/search.css">
+    <link rel="stylesheet" href="./css/searchList.css">
 
 </head>
 
@@ -24,7 +24,7 @@
         <div class="lt_header">
             <!-- 返回上一页: history.go(-1);  history.back(); -->
             <a href="javascript:history.back();" class="icon_left"><i class="mui-icon mui-icon-back"></i></a>
-            <h3>搜索中心</h3>
+            <h3>商品列表</h3>
         </div>
 
         <!-- 主体 -->
@@ -39,9 +39,20 @@
                         <button class="search_btn mui-btn mui-btn-primary">搜索</button>
                     </div>
 
-                    <!-- 历史记录 -->
-                    <div class="lt_history">
+                    <!-- 排序部分 -->
+                    <div class="lt_sort">
+                        <a href="#">上架时间 <i class="fa fa-angle-down"></i></a>
+                        <a href="#" data-type='price'>价格 <i class="fa fa-angle-down"></i></a>
+                        <a href="#" data-type='num'>库存 <i class="fa fa-angle-down"></i></a>
+                        <a href="#">折扣 <i class="fa fa-angle-down"></i></a>
+                    </div>
 
+                    <!-- 商品展示模块 -->
+                    <div class="lt_product">
+                        <!-- 挖坑 -->
+
+                        <!-- 动画框 -->
+                        <div class="loading"></div>
                     </div>
                 </div>
             </div>
@@ -81,29 +92,22 @@
 
 
     <script type="text/html" id="searchTpl">
-        <!-- 这里这么写,js哪里如果不做处理会报错,因为如果获取的是本地存储没有的值,返回的是null,
-             那么null是没有length的,所以报错了 -->
-        {{if arr.length===0}}
-            <p>没有更多历史记录了</p>
-        {{else}}
-            <div class="title">
-                <span class="mui-pull-left">搜索历史</span>
-                <span class="btn_empty mui-pull-right"><i class="fa fa-trash"></i>清空记录</span>
-            </div>
-            <div class="content">
-                <ul>
-                    {{each arr v i}}
-                        <li>
-                            <!-- 点击历史记录也可以进行页面跳转,并且你要跳转的页面后面拼接上数组里的v
-                                 v,数组里的v就是从本地存储里获取到的历史记录名称 -->
-                            <a class="mui-pull-left" href="searchList.html?key={{v}}">{{v}}</a>
-                            <!-- 存一下自定义属性下标在这里,方便点击的时候获取到你所点击的那一项 -->
-                            <i data-index="{{i}}" class="btn_delete mui-pull-right mui-icon mui-icon-closeempty"></i>
-                        </li>
-                    {{/each}}
-                </ul>
-            </div>
-        {{/if}}
+        <ul class="mui-clearfix">
+            {{each data v i}}
+                <li>
+                    <!-- 点击哪个商品,就把点击的那个商品id通过地址栏传参到商品详情页页面 -->
+                    <a href="product.html?productId={{v.id}}">
+                        <img src="{{v.pic[0].picAddr}}" alt="">
+                        <p class="mui-ellipsis-2">{{v.proName}}</p>
+                        <p>
+                            <span class="price">&yen;{{v.price}}</span>
+                            <span class="oldPrice">&yen;{{v.oldPrice}}</span>
+                        </p>
+                        <button class="mui-btn mui-btn-primary">立即购买</button>
+                    </a>
+                </li>
+            {{/each}}
+        </ul>
     </script>
 
 
@@ -116,7 +120,7 @@
     <!-- 插件实例化的包 -->
     <script src="./js/common.js"></script>
     <!-- 自己的js包 -->
-    <script src="./js/search.js"></script>
+    <script src="./js/searchList.js"></script>
 
 </body>
 

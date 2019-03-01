@@ -152,5 +152,25 @@ $(function () {
 
         // 把文本框内容清空
         $('.search_input').val('');
+
+        // 添加完搜索历史之后,跳转到搜索列表页,然后搜索列表页根据你输入搜索的关键字去
+        // 后台查询数据,进行页面渲染
+        //         进行点击页面跳转的时候, 是可以通过location.href = 后面写你要跳转的页面还可以
+
+        //         在后面拼上你要传的值, 用 ?= 拼接上你要传的值即可,, 然后在跳转过来之后的当前页面
+
+        //         可以通过location.search获取到地址栏参数, 如果有中文是需要解码的, 通过decodeURL
+        //         可以进行中文解码,,,,,
+        //         var str = location.search; 有中文就需要解码
+        //                  str = decodeURL(str)   解析成中文
+        //                  str = str.slice(1)     从第一项开始截取一直截取到最后, 把 ? 去掉
+        //         var arr = str.split('&')   把& 截取掉, 成了一个数组
+        //         var obj = {}     空对象准备放遍历数组之后的值
+        //         arr.forEach(function (v, i) {
+        //             var key = v.split('=')[0]  把 = 截取掉又是一个数组, 所以取数组第0项
+        //             var value = v.split('=')[1]  这个是取数组第一项
+        //             obj[key] = value     将遍历的属性分成键值对添加到对象中
+        //         })
+        location.href = 'searchList.html?key=' + key;    //这个key是上面获取到输入框的内容
     });
 })
